@@ -1,44 +1,64 @@
-# 🌞 Solar Tracker Simulation (MATLAB Simulink)
+🌞 Solar Tracker Control System
+This project implements a solar tracking system that dynamically orients a solar panel to follow the sun's position using a PID-controlled motor. It leverages Simulink, Simscape Multibody, and Simscape Electrical for modeling the mechanics, electrical motor, and control logic.
 
-This project simulates a solar panel tracking system using MATLAB Simulink. The goal is to maximize solar energy harvesting by dynamically adjusting the panel angle using a PID-controlled motor model, based on the sun’s position calculated from time and latitude.
+📁 Repository Contents
+File	Description
+SolarTracker.slx	Simulink model of the solar tracker
+solar_tracker_setup.m	Initializes variables like irradiance, panel area, PID values
+sun_position_algorithm.mlx	Calculates realistic solar position using location and time
+SolarTracker.zip	Compressed version of the full simulation project
+README.md	Project overview and instructions
 
----
+✅ Features
+🌐 Location-based solar irradiance modeling (Hyderabad example)
 
-## 📁 Project Files
+⚙️ Simscape Multibody: Models real-world mechanical rotation of the panel
 
-| File | Description |
-| `SolarTracker.slx` | The main Simulink model |
-| `solar_tracker_script.m` / `.mlx` | MATLAB script to initialize parameters and run the simulation |
-| `README.md` | Project documentation |
+🔌 Simscape Electrical: Simulates a motor driving the panel
 
----
+🧠 PID Controller: Ensures precise tracking of the sun’s path
 
-## ⚙️ Features
+📊 Scope Outputs: Visualize panel angle, sun position, and power generation
 
-- ☀️ Realistic solar irradiance model using latitude (Hyderabad) and time of day  
-- 🧮 Dynamic power calculation based on panel area and efficiency  
-- 🎯 PID controller to track optimal panel angle  
-- 🔁 Motor delay simulated using transfer function `1/(0.5s + 1)`  
-- 📊 Scope outputs for visualizing power and panel angle
+🗂️ Clean project structure for easy simulation and sharing
 
----
+⚙️ How It Works
+Sun Position Algorithm: Calculates solar elevation for 24 hours using time and latitude.
 
-## 🧪 How to Run
+Irradiance Modeling: Uses elevation to determine realistic solar irradiance curve.
 
-1. Open `solar_tracker_script.m` in MATLAB.
-2. Run the script to initialize the workspace and launch the model.
-3. In Simulink, press **Run** to simulate a full day (86400 seconds).
-4. Open the scopes to view:
-   - Power output over the day
-   - Panel angle tracking response
+Power Calculation: Uses panel area and efficiency to compute power.
 
----
+PID Controller: Adjusts motor signal to track the optimal panel orientation.
 
-## 📈 Sample Output (Optional)
+Simulation: Shows real-time panel behavior and power output in Simulink.
 
-You can log and plot panel angle (`theta`) and power output in MATLAB using:
+🛠️ How to Run the Project
+Open MATLAB and run:
 
-```matlab
-theta = simOut.logsout.getElement('theta');
-plot(theta.Values.Time / 3600, theta.Values.Data);
-xlabel('Time (hours)'); ylabel('Panel Angle (rad)');
+matlab
+Copy
+Edit
+solar_tracker_setup
+Open Simulink, then open SolarTracker.slx.
+
+In the "From Workspace" block, ensure irradiance_data is the variable name.
+
+Click Run to simulate. Observe:
+
+PowerScope: Solar power output
+
+PIDScope: PID controller output
+
+Panel Angle: Actual vs. desired sun angle
+
+📈 Future Enhancements
+Dual or triple axis tracking system
+
+Real solar position API or SPA library
+
+Machine learning-based trajectory prediction
+
+Battery storage and inverter integration
+
+Fault detection and automatic recovery
